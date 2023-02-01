@@ -1,0 +1,6 @@
+:80 {
+	reverse_proxy http://apache:8000 {
+		header_up Host "hyip"
+	}
+}
+
