@@ -2,14 +2,14 @@ version: '3.1'
 
 services:
 
-  caddy:
-    image: caddy:2.6.2
-    restart: always
-    ports:
-      - "127.0.0.1:80:80"
-
-    volumes:
-      - ./configs/Caddyfile:/etc/caddy/Caddyfile
+#  caddy:
+#    image: caddy:2.6.2
+#    restart: always
+#    ports:
+#      - "127.0.0.1:80:80"
+#
+#    volumes:
+#      - ./configs/Caddyfile:/etc/caddy/Caddyfile
 
   db:
     image: mariadb:10.2-bionic #mysql:8.0.32
@@ -24,7 +24,7 @@ services:
       - database-volume:/var/lib/mysql
 
   apache:
-    image: my-apache-php:1.2.20
+    image: my-apache-php:1.2.21
     build:
       context: .
       args:
@@ -36,7 +36,9 @@ services:
       - ./configs/mysqli_conf.php:/var/www/html/mysqli_conf.php
       - ./configs/000-default.conf:/etc/apache2/sites-available/000-default.conf
       - ./configs/apache2.conf:/etc/apache2/apache2.conf
-      - ./configs/ports.conf:/etc/apache2/ports.conf
+      #- ./configs/ports.conf:/etc/apache2/ports.conf
+    ports:
+      - "127.0.0.1:80:80"
 
     ##aarch64
     ##x86-64

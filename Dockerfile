@@ -85,4 +85,4 @@ ADD entrypoint.sh /
 CMD ["bash", "/entrypoint.sh"]
 #ENTRYPOINT [ "/entrypoint.sh" ]
 WORKDIR "/var/www/html"
-EXPOSE 8000
+EXPOSE 80
